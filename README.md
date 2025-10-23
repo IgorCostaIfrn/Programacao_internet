@@ -1,2 +1,2 @@
 # Programacao_internet
-Repositorio para a diciplina de Programação para Internet.
+Disciplina ministrada para a turma de INFO4M - IFRN - Campus Nova cruz

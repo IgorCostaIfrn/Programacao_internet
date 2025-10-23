@@ -1,5 +1,4 @@
 <?php
-
 require_once __DIR__ . '/../config/database.php';
 
 class Tarefa
@@ -12,8 +11,9 @@ class Tarefa
         $this->conn = $db->conectar();
     }
 
-    #   LISTAR TAREFAS
-    public function listar()
+    ## Listar 
+
+    public function listarAtivas()
     {
         $tarefas = [];
         $sql = "SELECT * FROM tarefas ORDER BY data_criacao DESC";
@@ -27,7 +27,14 @@ class Tarefa
 
         return $tarefas;
     }
-    #   CRIAR UMA TAREFA
+
+    public function listar()
+    {
+        return [];
+    }
+
+    ## Criar 
+
     public function criar($descricao)
     {
         $descricao = $this->conn->real_escape_string($descricao);
@@ -35,13 +42,33 @@ class Tarefa
         return $this->conn->query($sql);
     }
 
-    #   EXCLUIR UMA TAREFA
+    ## Exlcuir 
+
     public function excluir($id)
     {
         $id = intval($id);
-        $sql = "DELETE FROM tarefas WHERE id=$id";
+        $sql = "DELETE FROM tarefas WHERE id = $id";
         return $this->conn->query($sql);
     }
+
+    ## Editar
+    public function editar($id, $descricao)
+    {
+        $id = intval($id);
+        $descricao = $this->conn->real_escape_string($descricao);
+        $sql = "UPDATE tarefas SET descricao = '$descricao' WHERE id = $id";
+        return $this->conn->query($sql);
+    }
+
+    ## Buscar por ID (para preencher o formulário de edição)
+    public function buscarPorId($id)
+    {
+        $id = intval($id);
+        $sql = "SELECT * FROM tarefas WHERE id = $id";
+        $resultado = $this->conn->query($sql);
+        return $resultado->fetch_assoc();
+    }
+
 }
 
 ?>
