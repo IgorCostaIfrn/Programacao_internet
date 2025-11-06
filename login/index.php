@@ -1,11 +1,9 @@
 <?php
-include_once 'conexao.php';
-
+include('verificacaoLogin.php');
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +14,7 @@ include_once 'conexao.php';
 
 <body>
     <h1>Acesse sua conta</h1>
-    <form action="protect.php" method="POST">
+    <form action="index.php" method="POST">
         <p>
             <label>E-mail</label>
             <input type="text" name="email">
