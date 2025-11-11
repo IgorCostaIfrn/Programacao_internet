@@ -23,7 +23,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
 
             header("Location: painel.php");
         } else {
-            echo "Usuario não encontrado";
+            echo "Usuario ou senha incorreto";
         }
 
 
