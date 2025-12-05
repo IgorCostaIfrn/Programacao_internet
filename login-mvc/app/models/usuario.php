@@ -19,6 +19,7 @@ class Usuario
         $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
         $res = $this->conn->query($sql);
 
-        return ($res->num_rows === 1) ? $res->fetch_assoc() : null;
+        return $res->fetch_assoc();
     }
 }
+?>

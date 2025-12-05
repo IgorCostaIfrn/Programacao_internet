@@ -8,7 +8,7 @@
 <body>
 
 <h2>Você não está autenticado!</h2>
-<a href="login.php">Ir para o Login</a>
+<a href="../../index.php">Ir para o Login</a>
 
 </body>
 </html>

@@ -1,3 +1,9 @@
+<?php 
+if(isset($_SESSION['erro'])){
+echo"<script>alert('".$_SESSION['erro']."');</script>";
+$_SESSION['erro'] = null;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,10 +13,6 @@
 <body>
 
 <h1>Acesse sua conta</h1>
-
-<?php if (!empty($erro)): ?>
-    <p style="color:red;"><?php echo $erro; ?></p>
-<?php endif; ?>
 
 <form action="index.php?action=login" method="POST">
     <p>

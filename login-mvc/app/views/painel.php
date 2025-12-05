@@ -3,8 +3,7 @@ if(!isset($_SESSION)){
     session_start();
 }
 if(!isset($_SESSION['id'])){
-    include __DIR__ . '/../views/protect.php';
-    die;
+    header('Location: protect.php');
 }
 ?>
 <!DOCTYPE html>
