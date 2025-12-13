@@ -15,7 +15,7 @@ class DatabaseTodoList
 
         if ($this->conn->connect_error) {
 
-            die("Algo deu errado com a conexão" . $this->conn->connect_error);
+            die("Algo deu errado com a conexão das tarefas" . $this->conn->connect_error);
         }
 
         return $this->conn;

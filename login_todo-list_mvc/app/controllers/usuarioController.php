@@ -1,26 +1,31 @@
 <?php
+
 /**     ADICIONANDO UM INDENTIFICADOR DE USUÁRIO NAS TAREFAS (NÃO ESQUERCER DE ADICIONAR NO PC DO LAB)
  * USE todo_list;
  * ALTER TABLE tarefas
  * ADD COLUMN id_usuario INT NOT NULL;
  */
+
 require_once __DIR__ . '/../models/usuario.php';
 
-class UsuarioController {
+class UsuarioController
+{
     private $usuarioModel;
 
-    public function __construct() {
-        if (!isset($_SESSION)) {
-            session_start();
-        }
+    public function __construct()
+    {
         $this->usuarioModel = new Usuario();
     }
 
-    public function index() {
+#   PAGINA DE LOGIN
+    public function index()
+    {
         include __DIR__ . '/../views/usuario/login.php';
     }
 
-    public function login() {
+#   FUNÇÃO DE LOGIN, VERIFICAÇÃO DE USUÁRIO E SENHA E CRIAÇÃO DE SESSÃO (COM TUDO CERTO: REDIRECIONA PARA A LISTAGEM DE TAREFAS)
+    public function login()
+    {
         if (empty($_POST['email']) || empty($_POST['senha'])) {
             $_SESSION['erro'] = 'Preencha todos os campos';
             header('Location: index.php');
@@ -36,9 +41,10 @@ class UsuarioController {
         }
     }
 
-    public function logout() {
+#  FUNÇÃO DE LOGOUT, DESTRÓI A SESSÃO E REDIRECIONA PARA A PÁGINA DE LOGIN
+    public function logout()
+    {
         session_destroy();
         header("Location: index.php");
     }
 }
-?>

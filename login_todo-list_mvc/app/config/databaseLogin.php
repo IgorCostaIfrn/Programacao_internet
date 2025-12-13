@@ -15,7 +15,7 @@ class DatabaseLogin
 
         if ($this->conn->connect_error) {
 
-            die("Erro na conexão: " . $this->conn->connect_error);
+            die("Erro na conexão do login: " . $this->conn->connect_error);
         }
 
         return $this->conn;
