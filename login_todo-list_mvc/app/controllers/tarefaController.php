@@ -1,11 +1,5 @@
 <?php
 
-/**     ADICIONANDO UM INDENTIFICADOR DE USUÁRIO NAS TAREFAS (NÃO ESQUERCER DE ADICIONAR NO PC DO LAB)
- * USE todo_list;
- * ALTER TABLE tarefas
- * ADD COLUMN id_usuario INT NOT NULL;
- */
-
 require_once __DIR__ . '/../models/tarefa.php';
 class TarefaController
 {
@@ -13,17 +7,20 @@ class TarefaController
 
     public function __construct()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $this->tarefaModel = new Tarefa();
     }
 
-#   FUNÇÃO DE LISTAGEM DE TAREFAS (SOMENTE AS ATIVAS PARA O USUÁRIO LOGADO)
+    #   FUNÇÃO DE LISTAGEM DE TAREFAS (SOMENTE AS ATIVAS PARA O USUÁRIO LOGADO)
     public function listar()
     {
         $tarefas = $this->tarefaModel->listarAtivas($_SESSION['id']);
         include __DIR__ . '/../views/tarefa/listar.php';
     }
 
-#   FUNÇÃO DE CRIAÇÃO DE TAREFA
+    #   FUNÇÃO DE CRIAÇÃO DE TAREFA
     public function criar()
     {
         if (isset($_POST['descricao']) && !empty(trim($_POST['descricao']))) {
@@ -32,7 +29,7 @@ class TarefaController
         header("Location: index.php?action=listar");
     }
 
-#   FUNÇÃO DE EXCLUSÃO DE TAREFA
+    #   FUNÇÃO DE EXCLUSÃO DE TAREFA
     public function excluir()
     {
         if (isset($_GET['delete'])) {
@@ -41,7 +38,7 @@ class TarefaController
         header("Location: index.php?action=listar");
     }
 
-#   FUNÇÃO DE EDIÇÃO DE TAREFA
+    #   FUNÇÃO DE EDIÇÃO DE TAREFA
     public function editarTarefa()
     {
         if (isset($_GET['id'])) {
@@ -50,7 +47,7 @@ class TarefaController
         }
     }
 
-#   FUNÇÃO DE ATUALIZAÇÃO DE TAREFA
+    #   FUNÇÃO DE ATUALIZAÇÃO DE TAREFA
     public function atualizar()
     {
         if (isset($_POST['id']) && isset($_POST['descricao'])) {

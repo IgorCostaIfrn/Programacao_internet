@@ -14,16 +14,19 @@ class UsuarioController
 
     public function __construct()
     {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         $this->usuarioModel = new Usuario();
     }
 
-#   PAGINA DE LOGIN
+    #   PAGINA DE LOGIN
     public function index()
     {
         include __DIR__ . '/../views/usuario/login.php';
     }
 
-#   FUNÇÃO DE LOGIN, VERIFICAÇÃO DE USUÁRIO E SENHA E CRIAÇÃO DE SESSÃO (COM TUDO CERTO: REDIRECIONA PARA A LISTAGEM DE TAREFAS)
+    #   FUNÇÃO DE LOGIN, VERIFICAÇÃO DE USUÁRIO E SENHA E CRIAÇÃO DE SESSÃO (COM TUDO CERTO: REDIRECIONA PARA A LISTAGEM DE TAREFAS)
     public function login()
     {
         if (empty($_POST['email']) || empty($_POST['senha'])) {
@@ -41,7 +44,7 @@ class UsuarioController
         }
     }
 
-#  FUNÇÃO DE LOGOUT, DESTRÓI A SESSÃO E REDIRECIONA PARA A PÁGINA DE LOGIN
+    #  FUNÇÃO DE LOGOUT, DESTRÓI A SESSÃO E REDIRECIONA PARA A PÁGINA DE LOGIN
     public function logout()
     {
         session_destroy();

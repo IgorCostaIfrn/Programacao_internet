@@ -3,21 +3,23 @@ if(!isset($_SESSION)){
     session_start();
 }
 if(!isset($_SESSION['id'])){
-    $_SESSION['erro'] = 'Você não está autenticado! \n Faça login para acessar o conteúdo.';
+    $_SESSION['erro'] = 'Você não está autenticado! \nFaça login para acessar o conteúdo';
     header('Location: /index.php');
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List (MVC)</title>
+    <title>To-Do List</title>
     <style>
-        body{
+        body {
             background-color: aquamarine;
         }
     </style>
 </head>
+
 <body>
 
     <h1>TO-DO List (MVC)</h1>
@@ -27,7 +29,7 @@ if(!isset($_SESSION['id'])){
         <button type="submit">Adicionar</button>
     </form>
 
-    
+
     <?php if (!empty($tarefas)): ?>
         <h2>Suas tarefas</h2>
         <ul>
@@ -44,4 +46,5 @@ if(!isset($_SESSION['id'])){
     <?php endif; ?>
     <a href="index.php?action=logout">Sair</a>
 </body>
+
 </html>
